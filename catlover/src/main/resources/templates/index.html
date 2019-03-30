@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div>
+
+消息:
+<input id='msg' />
+<button onclick="sendMessage()">发送</button>
+<button onclick="connect()">进入房间</button>
+
+
+</div>
+
+<script type="text/javascript">
+	if('WebSocket' in window){
+		var ws = new WebSocket("ws://127.0.0.1:8083/wx/chat?token=7991b8f7e2554b23ba5cd534ef1b7486&webId=0889c0ebcbef42d9ab571c2dc73efa51");
+		ws.onopen = function(){
+		  console.log('ws open')
+		}
+		
+		ws.onmessage = function(res){
+			console.log('message'+ res.data);
+		}
+		
+			    
+	}else{
+		alert('你的浏览器不支持websocket');
+	}
+	
+function connect(){
+	var msg = {
+	 msgType: 2,
+	 reciverId: '0889c0ebcbef42d9ab571c2dc73efa50',
+	 senderId:'0889c0ebcbef42d9ab571c2dc73efa51',
+	 roomId:2
+	}
+	
+	ws.send(JSON.stringify(msg));
+}
+
+function sendMessage(){
+	var msgIpt = document.getElementById("msg");
+	var msgVal = msgIpt.value;
+    var msg = {
+   	 roomId : 2,
+	 senderId : '0889c0ebcbef42d9ab571c2dc73efa51',
+	 reciverId : '0889c0ebcbef42d9ab571c2dc73efa50',
+	 content : msgVal,
+	 msgType : 4,
+	 };
+    
+    ws.send(JSON.stringify(msg));
+		
+}
+
+
+const formatTime = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+
+   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  //return [month, day,hour, minute].map(formatNumber).join(':')
+}
+
+const formatNumber = n => {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+</script>
+</body>
+</html>

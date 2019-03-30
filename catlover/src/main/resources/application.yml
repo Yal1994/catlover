@@ -1,0 +1,95 @@
+# 项目设置
+catlover:
+  # 名称
+  name: CatLover
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2019
+  # 文件上传路径
+  #profile: C:/Users/Public/Documents
+  # 图片文件虚拟路径
+  imgAddr: /img
+  # 视频文件虚拟路径
+  viAddr: /vi
+  # 获取ip地址开关
+  addressEnabled: false
+  # wechat设置
+  wx:
+    appid: ====
+    secret: ====
+  #会话有效时长(时)
+  token:
+    expired: 144
+    key: catloverminiprogram
+  #分页
+  pager:
+    pageSize: 10
+    pageInit: 1
+
+# 开发环境配置
+server:
+  # 服务端口
+  #port: 443
+  servlet:
+    # 项目contextPath
+    context-path: /
+  ssl:
+    key-store: classpath:====
+    key-store-password: ====
+    key-store-type: JKS
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+#http:
+#  port: 80
+  
+# 日志配置
+logging:
+  path: C:/log
+  level:
+    cnyl: debug
+    org.springframework: WARN
+    org.spring.springboot.dao: debug
+    
+# Spring配置
+spring:
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+  # 资源配置
+  messages:
+    basename: i18n/messages
+  jackson:
+    time-zone: GMT-8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: druid
+  # 文件上传
+  servlet:
+    multipart: 
+      max-file-size: 300MB
+      max-request-size: 300MB
+  # 服务模块
+  devtools:
+    restart:
+      enabled: false
+  # ORM模块配置:JPA
+  jpa:
+    database: MYSQL
+    hibernate: 
+      ddl-auto: update
+    #show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+  
+
+    
+
+      

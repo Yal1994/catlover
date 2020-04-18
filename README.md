@@ -3,6 +3,6 @@
 
 含websocket私聊,内容发布管理等
 
-小程序前台烦请前往:https://github.com/tribbys/catlover_miniapp
+小程序前台:https://github.com/tribbys/catlover_miniapp
 
 
